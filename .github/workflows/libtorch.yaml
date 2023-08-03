@@ -49,12 +49,13 @@ jobs:
           mkdir pytorch-build
           cd pytorch-build
           cmake \
-            -DBUILD_SHARED_LIBS:BOOL=ON \
+            -DBUILD_SHARED_LIBS:BOOL=OFF \
             -DCMAKE_BUILD_TYPE:STRING=Release \
             -DPYTHON_EXECUTABLE:PATH=/Users/dfalbel/opt/miniconda3/bin/python3 \
             ${{ steps.options.outputs.cmake }} \
             -DCMAKE_INSTALL_PREFIX:PATH=../libtorch \
             -DUSE_MPS=ON  \
+            -DUSE_CUDA=OFF  \
             ../pytorch
           cmake --build . --target install --parallel 8
       # See https://discuss.pytorch.org/t/precompiled-libtorch-for-apple-silicon/162635/7
